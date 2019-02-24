@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yabushier.blogs.mapper.ClassifyMapper" >
+  <resultMap id="BaseResultMap" type="com.yabushier.blogs.bean.Classify" >
+    <id column="classify_id" property="classifyId" jdbcType="INTEGER" />
+    <result column="classify_name" property="classifyName" jdbcType="VARCHAR" />
+    <result column="classify_pid" property="classifyPid" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classify
+    where classify_id = #{classifyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yabushier.blogs.bean.Classify" >
+    insert into classify (classify_id, classify_name, classify_pid,
+      sort)
+    values (#{classifyId,jdbcType=INTEGER}, #{classifyName,jdbcType=VARCHAR}, #{classifyPid,jdbcType=INTEGER},
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yabushier.blogs.bean.Classify" >
+    update classify
+    set classify_name = #{classifyName,jdbcType=VARCHAR},
+      classify_pid = #{classifyPid,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER}
+    where classify_id = #{classifyId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select classify_id, classify_name, classify_pid, sort
+    from classify
+    where classify_id = #{classifyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select classify_id, classify_name, classify_pid, sort
+    from classify order by sort DESC
+  </select>
+</mapper>

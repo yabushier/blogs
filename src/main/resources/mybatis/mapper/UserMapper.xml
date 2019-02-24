@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yabushier.blogs.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yabushier.blogs.bean.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="uuid" jdbcType="INTEGER" property="uuid" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="isadmin" jdbcType="TINYINT" property="isadmin" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yabushier.blogs.bean.User">
+    insert into user (user_id, nickname, password, 
+      uuid, email, isadmin
+      )
+    values (#{userId,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{uuid,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{isadmin,jdbcType=TINYINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yabushier.blogs.bean.User">
+    update user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      isadmin = #{isadmin,jdbcType=TINYINT}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, nickname, password, uuid, email, isadmin
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, nickname, password, uuid, email, isadmin
+    from user
+  </select>
+
+
+</mapper>

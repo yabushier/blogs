@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yabushier.blogs.mapper.BlogsMapper" >
+  <resultMap id="BaseResultMap" type="com.yabushier.blogs.bean.Blogs" >
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="release_time" property="releaseTime" jdbcType="DATE" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="pageviews" property="pageviews" jdbcType="BIGINT" />
+    <result column="blog_content" property="blogContent" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId" jdbcType="INTEGER" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+    <result column="istop" property="istop" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blogs
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yabushier.blogs.bean.Blogs" >
+    insert into blogs (blog_id, title, image, 
+      release_time, user_nickname, pageviews, 
+      blog_content, classify_id, comment_num
+      )
+    values (#{blogId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{releaseTime,jdbcType=DATE}, #{userNickname,jdbcType=VARCHAR}, #{pageviews,jdbcType=BIGINT}, 
+      #{blogContent,jdbcType=VARCHAR}, #{classifyId,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yabushier.blogs.bean.Blogs" >
+    update blogs
+    set title = #{title,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      release_time = #{releaseTime,jdbcType=DATE},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      pageviews = #{pageviews,jdbcType=BIGINT},
+      blog_content = #{blogContent,jdbcType=VARCHAR},
+      classify_id = #{classifyId,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select blog_id, title, image, release_time, user_nickname, pageviews, blog_content, 
+    classify_id, comment_num
+    from blogs
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select blog_id, title, image, release_time, user_nickname, pageviews, blog_content,
+  b.classify_id, comment_num,istop,c.classify_name as classifyName
+    from blogs b
+    inner join classify c
+    on b.classify_id = c.classify_id
+  </select>
+  <select id="selectTopBlogs" resultMap="BaseResultMap" >
+    select blog_id, title, image, release_time, user_nickname, pageviews, blog_content, classify_id, comment_num,istop
+    from blogs
+    where istop=1
+  </select>
+  <select id="loadBlogsByClassifyPid" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select blog_id, title, image, release_time, user_nickname, pageviews, blog_content,
+  b.classify_id, comment_num,istop,c.classify_name as classifyName
+    from blogs b
+    inner join classify c
+    on b.classify_id = c.classify_id
+    where b.classify_id = #{classifyPid}
+  </select>
+</mapper>

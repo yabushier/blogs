@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+  	<meta name="apple-mobile-web-app-capable" content="yes">
+  	<meta name="format-detection" content="telephone=no">
+	<title>首页 - Blog</title>
+	<link rel="stylesheet" href="/layui/css/layui.css">
+	<link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<div th:replace="menu::topMenu">
+
+</div>
+
+	<div class="layui-container">
+		<div class="layui-row layui-col-space20">
+			<div class="layui-col-md8">
+				<div id="image_presentation" class="layui-row">
+
+
+					<div class="layui-col-md12 margin20"></div> <!-- 空一行 -->
+
+				</div>
+	        </div>
+	        <div class="layui-col-md4">
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card">
+						  	<div class="layui-card-header">
+								<span class="layui-breadcrumb" lay-separator="|">
+									<a href="javascript:;">站点统计</a>
+									<a href="javascript:;">联系站长</a>
+								</span>
+						  	</div>
+						  	<div class="layui-card-body" id="stat" style="display: none;">
+						  		<table class="layui-table">
+								  	<colgroup>
+								    	<col width="120">
+								    	<col width="230">
+								  	</colgroup>
+								  	<tbody>
+								    	<tr>
+								      		<td>运行时间：</td>
+								      		<td>856 天</td>
+								    	</tr>
+								    	<tr>
+								      		<td>发表文章：</td>
+								      		<td>1024 篇</td>
+								    	</tr>
+								    	<tr>
+								      		<td>注册用户：</td>
+								      		<td>3689 人</td>
+								    	</tr>
+								  	</tbody>
+								</table>
+						  	</div>
+						  	<div class="layui-card-body" id="binfo">
+						  		<table class="layui-table">
+								  	<colgroup>
+								    	<col width="120">
+								    	<col width="230">
+								  	</colgroup>
+								  	<tbody>
+								    	<tr>
+								      		<td>QQ：</td>
+								      		<td>27941662</td>
+								    	</tr>
+								    	<tr>
+								      		<td>Wechat：</td>
+								      		<td>SCHOOP</td>
+								    	</tr>
+								    	<tr>
+								      		<td>qqGroup：</td>
+								      		<td>88888888</td>
+								    	</tr>
+								  	</tbody>
+								</table>
+						  	</div>
+						</div>
+					</div>
+					<div class="layui-col-md12 margin20"></div>
+					<div class="layui-col-md12">
+						<div class="layui-card">
+						  	<div class="layui-card-header">
+								<span>
+									热门文章
+								</span>
+						  	</div>
+						  	<div class="layui-card-body">
+								<table class="layui-table" lay-skin="nob">
+								  	<tbody>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								    	<tr><td><a href="javascript:;">用layui做一个独立博客网站（响应式模板）</a></td></tr>
+								  	</tbody>
+								</table>
+						  	</div>
+						</div>
+					</div>
+					<div class="layui-col-md12 margin20"></div>
+					<div class="layui-col-md12">
+						<div class="layui-card">
+						  	<div class="layui-card-header">
+								<span>
+									捐助本站
+								</span>
+						  	</div>
+						  	<div class="layui-card-body" style="text-align: center;">
+						    	<img src="https://cdn.layui.com/upload/2017_8/168_1501894831075_19619.jpg" style="display: inline-block;">
+						    	<br/>
+						    	<p>无论多少，都是心意!</p>
+						  	</div>
+						</div>
+					</div>
+				</div>
+	        </div>
+		</div>
+	</div>
+
+<!-- 倒入foot -->
+<div th:replace="foot::foot">
+
+</div>
+
+</body>
+<script src="/layui/layui.all.js"></script>
+<script src="/javascript/jquery-1.7.2.js"></script>
+<script>
+    function doMenuHref(menuId){
+        $.ajax({
+			url:"/menu_href/"+menuId,
+			type:"post",
+			success:function (blogsList) {
+				$("#image_presentation").find("*").empty();
+                if(blogsList){
+                    console.log(blogsList);
+                    var blogsStr = "";
+                    //加载顶置Blogs}
+                    $(blogsList).each(function (index,blogs) {
+                        //需要顶置的博客
+                        if(blogs.istop == 1){
+                            blogsStr +='<div class="layui-col-md12">';
+                            blogsStr +='<div class="main zdbox">';
+                            blogsStr +='<div class="subject"><b>[置顶]</b><a href="javascript:;" title="'+blogs.title+'">'+blogs.title+'</a><em>'+blogs.releaseTime+' 发布</em></div>';
+                            blogsStr +='<div class="content">'+blogs.blogContent.substring(0,110)+'</div>';
+                            blogsStr +='</div>';
+                            blogsStr +='</div>';
+                            blogsStr += '<div class="layui-col-md12 margin20"></div> <!-- 空一行 -->';
+                        }
+                    });
+                    //加载普通博客
+                    $(blogsList).each(function (index,blogs) {
+                        //普通的博客
+                        if(blogs.istop == 0){
+                            blogsStr +='<div class="layui-col-md12">                                                                                                                                                                                                                                                                                               ';
+                            blogsStr +='	<div class="main list">                                                                                                                                                                                                                                                                                                ';
+                            blogsStr +='		<div class="subject"><a href="javascript:;" class="caty">['+blogs.classifyName+']</a><a href="javascript:;" title="'+blogs.title+'">'+blogs.title+'</a><em>'+blogs.releaseTime+' 发布</em></div>                                                                                        ';
+                            blogsStr +='		<div class="content layui-row">                                                                                                                                                                                                                                                                                    ';
+                            // 样式图片
+                            if(blogs.image){
+                                blogsStr +='			<div class="layui-col-md4 list-img">                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='				<a href="javascript:;"><img src="'+blogs.image+'"></a>                                                                                                                                                                                                  ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='			<div class="layui-col-md8">                                                                                                                                                                                                                                                                                    ';
+                                // 博客内容预览
+                                blogsStr +='				<div class="list-text">'+blogs.blogContent.substring(0,255)+'</div>';
+                                blogsStr +='				<div class="list-stat layui-row">                                                                                                                                                                                                                                                                          ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 Label">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<i class="layui-icon layui-icon-note"></i>                                                                                                                                                                                                                                                         ';
+                                // 博客标签
+                                $(blogs.tagList).each(function (index,tag) {
+                                    blogsStr +='						<a href="javascript:;">'+tag.name+'</a>                                                                                                                                                                                                                                                                  ';
+                                })
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-reply-fill"></i>                                                                                                                                                                                                                                                   ';
+                                blogsStr +='						<em>'+blogs.commentNum+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-read"></i>                                                                                                                                                                                                                                                         ';
+                                blogsStr +='						<em>'+blogs.pageviews+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 alink">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<a href="'+'blogsDetails/'+blogs.blogId+'" class="layui-btn layui-btn-xs">阅读原文</a>                                                                                                                                                                                                                                 ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='				</div>                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='		</div>                                                                                                                                                                                                                                                                                                             ';
+                                blogsStr +='	</div>                                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='</div>                                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='<div class="layui-row layui-col-space20"></div>';
+                            }else {
+                                blogsStr +='			<div class="layui-col-md12">                                                                                                                                                                                                                                                                                    ';
+                                // 博客内容预览
+                                blogsStr +='				<div class="list-text">'+blogs.blogContent.substring(0,255)+'</div>';
+                                blogsStr +='				<div class="list-stat layui-row">                                                                                                                                                                                                                                                                          ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 Label">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<i class="layui-icon layui-icon-note"></i>                                                                                                                                                                                                                                                         ';
+                                // 博客标签
+                                $(blogs.tagList).each(function (index,tag) {
+                                    blogsStr +='						<a href="javascript:;">'+tag.name+'</a>                                                                                                                                                                                                                                                                  ';
+                                })
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-reply-fill"></i>                                                                                                                                                                                                                                                   ';
+                                blogsStr +='						<em>'+blogs.commentNum+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-read"></i>                                                                                                                                                                                                                                                         ';
+                                blogsStr +='						<em>'+blogs.pageviews+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 alink">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<a href="'+'blogsDetails/'+blogs.blogId+'" class="layui-btn layui-btn-xs">阅读原文</a>                                                                                                                                                                                                                                 ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='				</div>                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='		</div>                                                                                                                                                                                                                                                                                                             ';
+                                blogsStr +='	</div>                                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='</div>                                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='<div class="layui-row layui-col-space20"></div>';
+                            }
+                        }
+
+                    });
+                    blogsStr += '<div class="layui-col-md12" id="pages"></div>';
+                    console.log(blogsStr);
+                    $("#image_presentation").append(blogsStr);
+                }
+            }
+		});
+    }
+    //页面加载后执行
+    $(function () {
+		loadBlogs("1");
+    });
+
+
+
+    /**
+     * 异步加载博客信息
+     */
+    function loadBlogs(nowPageNum) {
+
+        $.ajax({
+            type:"post",
+            url:"/loadBlogs/"+nowPageNum,
+            success:function (blogsList) {
+                if(blogsList){
+                    console.log(blogsList);
+                    var blogsStr = "";
+                    //加载顶置Blogs}
+                    $(blogsList).each(function (index,blogs) {
+                        //需要顶置的博客
+                        if(blogs.istop == 1){
+                            blogsStr +='<div class="layui-col-md12">';
+                            blogsStr +='<div class="main zdbox">';
+                            blogsStr +='<div class="subject"><b>[置顶]</b><a href="javascript:;" title="'+blogs.title+'">'+blogs.title+'</a><em>'+blogs.releaseTime+' 发布</em></div>';
+                            blogsStr +='<div class="content">'+blogs.blogContent.substring(0,110)+'</div>';
+                            blogsStr +='</div>';
+                            blogsStr +='</div>';
+                            blogsStr += '<div class="layui-col-md12 margin20"></div> <!-- 空一行 -->';
+                        }
+                    });
+                    //加载普通博客
+                    $(blogsList).each(function (index,blogs) {
+                        //普通的博客
+                        if(blogs.istop == 0){
+                            blogsStr +='<div class="layui-col-md12">                                                                                                                                                                                                                                                                                               ';
+                            blogsStr +='	<div class="main list">                                                                                                                                                                                                                                                                                                ';
+                            blogsStr +='		<div class="subject"><a href="javascript:;" class="caty">['+blogs.classifyName+']</a><a href="javascript:;" title="'+blogs.title+'">'+blogs.title+'</a><em>'+blogs.releaseTime+' 发布</em></div>                                                                                        ';
+                            blogsStr +='		<div class="content layui-row">                                                                                                                                                                                                                                                                                    ';
+                            // 样式图片
+                            if(blogs.image){
+                                blogsStr +='			<div class="layui-col-md4 list-img">                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='				<a href="javascript:;"><img src="'+blogs.image+'"></a>                                                                                                                                                                                                  ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='			<div class="layui-col-md8">                                                                                                                                                                                                                                                                                    ';
+                                // 博客内容预览
+                                blogsStr +='				<div class="list-text">'+blogs.blogContent.substring(0,255)+'</div>';
+                                blogsStr +='				<div class="list-stat layui-row">                                                                                                                                                                                                                                                                          ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 Label">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<i class="layui-icon layui-icon-note"></i>                                                                                                                                                                                                                                                         ';
+                                // 博客标签
+                                $(blogs.tagList).each(function (index,tag) {
+                                    blogsStr +='						<a href="javascript:;">'+tag.name+'</a>                                                                                                                                                                                                                                                                  ';
+                                })
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-reply-fill"></i>                                                                                                                                                                                                                                                   ';
+                                blogsStr +='						<em>'+blogs.commentNum+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-read"></i>                                                                                                                                                                                                                                                         ';
+                                blogsStr +='						<em>'+blogs.pageviews+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 alink">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<a href="'+'blogsDetails/'+blogs.blogId+'" class="layui-btn layui-btn-xs">阅读原文</a>                                                                                                                                                                                                                                 ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='				</div>                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='		</div>                                                                                                                                                                                                                                                                                                             ';
+                                blogsStr +='	</div>                                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='</div>                                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='<div class="layui-row layui-col-space20"></div>';
+                            }else {
+                                blogsStr +='			<div class="layui-col-md12">                                                                                                                                                                                                                                                                                    ';
+                                // 博客内容预览
+                                blogsStr +='				<div class="list-text">'+blogs.blogContent.substring(0,255)+'</div>';
+                                blogsStr +='				<div class="list-stat layui-row">                                                                                                                                                                                                                                                                          ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 Label">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<i class="layui-icon layui-icon-note"></i>                                                                                                                                                                                                                                                         ';
+                                // 博客标签
+                                $(blogs.tagList).each(function (index,tag) {
+                                    blogsStr +='						<a href="javascript:;">'+tag.name+'</a>                                                                                                                                                                                                                                                                  ';
+                                })
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-reply-fill"></i>                                                                                                                                                                                                                                                   ';
+                                blogsStr +='						<em>'+blogs.commentNum+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3">                                                                                                                                                                                                                                                              ';
+                                blogsStr +='						<i class="layui-icon layui-icon-read"></i>                                                                                                                                                                                                                                                         ';
+                                blogsStr +='						<em>'+blogs.pageviews+'</em>                                                                                                                                                                                                                                                                                  ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='                                                                                                                                                                                                                                                                                                                           ';
+                                blogsStr +='					<div class="layui-col-xs3 layui-col-md3 alink">                                                                                                                                                                                                                                                        ';
+                                blogsStr +='						<a href="'+'blogsDetails/'+blogs.blogId+'" class="layui-btn layui-btn-xs">阅读原文</a>                                                                                                                                                                                                                                 ';
+                                blogsStr +='					</div>                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='				</div>                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='			</div>                                                                                                                                                                                                                                                                                                         ';
+                                blogsStr +='		</div>                                                                                                                                                                                                                                                                                                             ';
+                                blogsStr +='	</div>                                                                                                                                                                                                                                                                                                                 ';
+                                blogsStr +='</div>                                                                                                                                                                                                                                                                                                                     ';
+                                blogsStr +='<div class="layui-row layui-col-space20"></div>';
+                            }
+                        }
+
+                    });
+                    blogsStr += '<div class="layui-col-md12" id="pages"></div>';
+                    console.log(blogsStr);
+                    $("#image_presentation").append(blogsStr);
+                }
+            }
+        })
+    }
+
+</script>
+<script>
+	layui.carousel.render({
+	    elem: '#carousel'
+	    ,width: '100%' //设置容器宽度
+	    ,arrow: 'always' //始终显示箭头
+	    //,anim: 'updown' //切换动画方式
+  	});
+  	layui.laypage.render({
+	    elem: 'pages' //注意，这里的 test1 是 ID，不用加 # 号
+	    ,count: 123 //数据总数，从服务端得到
+  	});
+</script>
+</html>
